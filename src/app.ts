@@ -18,21 +18,23 @@ app.get('/api', (req: MyHttpRequest, res: MyHttpResponse) => {
 //   res.json({hello : `from api ${magicNumber}`});
 // })
 
+app.get('/hello/:id',(req: MyHttpRequest, res: MyHttpResponse) => {
+  console.log('serv')
+  console.log(res)
+  console.log(req)
+})
+
 app.get('/home', (req: MyHttpRequest, res: MyHttpResponse) => {
-  console.log("OK");
-  
   const value = {
     firstname: "Moi",
     lastname: 'Toi',
     age: 34
   }
   app.render('home', value, (err: Error | null, html: string | null) => {
-    console.log("OK render");
     if (err) {
       res.json({ error: err.message })
       return
     }
-    console.log("OK render 2");
     res.send(html || '')
   })
 })

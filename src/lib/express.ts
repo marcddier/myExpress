@@ -1,6 +1,7 @@
 import * as http from 'http'
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path'
+import * as urlNode from 'url'
 
 interface EmptyCallback {
 
@@ -12,7 +13,7 @@ export interface MyHttpResponse extends http.ServerResponse {
 }
 
 export interface MyHttpRequest {
-	json: (item: any) => void
+	params: (item: any) => void
 }
 
 class Express {
@@ -33,6 +34,7 @@ class Express {
     for (const method of ['GET', 'POST', 'PUT', 'DELETE']) {
       this.routes[method] = []
       this[method.toLowerCase()] = (url: string, callback: any) => {
+        console.log(url)
         this.routes[method].push({url, callback})
       }
     }
@@ -42,10 +44,14 @@ class Express {
       if (!method || !url) {
         return
       }
+      // bonjour/fzfezd/fzf/asas/dadzad/:idx@
+      console.log(urlNode.parse(url))
       const response = this.handleResponse(res)
       const route = this.routes[method].find((item: {url: string}) => item.url === url);
       if (!route) {
+        console.log('no route avaiable')
         response.statusCode = 404
+        response.write('404\n')
         response.end()
         return
       }
