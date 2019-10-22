@@ -1,0 +1,30 @@
+{
+  "name": "myexpress",
+  "version": "1.0.0",
+  "description": "My own express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcddier/myExpress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcddier/myExpress/issues"
+  },
+  "homepage": "https://github.com/marcddier/myExpress#readme",
+  "devDependencies": {
+    "@types/node": "^12.7.12",
+    "nodemon": "^1.19.3",
+    "ts-node": "^8.4.1",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {}
+}
