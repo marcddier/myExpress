@@ -19,17 +19,21 @@ app.get('/api', (req: MyHttpRequest, res: MyHttpResponse) => {
 // })
 
 app.get('/home', (req: MyHttpRequest, res: MyHttpResponse) => {
+  console.log("OK");
+  
   const value = {
     firstname: "Moi",
     lastname: 'Toi',
     age: 34
   }
   app.render('home', value, (err: Error | null, html: string | null) => {
+    console.log("OK render");
     if (err) {
       res.json({ error: err.message })
       return
     }
-    res.send(html)
+    console.log("OK render 2");
+    res.send(html || '')
   })
 })
 
